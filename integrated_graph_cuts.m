@@ -35,6 +35,9 @@ for i=1:length(allImages)
     imshow(im);
     subplot(1,2,2);
     %rgb analysis of image:  getRGB(im)
+    index = rgbAnalysis(allImages(i));
+    text(0.5,0.5,string(index)); axis off
+    disp(index);
 end
 
 
