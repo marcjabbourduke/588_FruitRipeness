@@ -25,14 +25,16 @@ while(a)
     end
 end
 
+% start every masked image with 'mask_'
+allImages = who('-regexp', '^mask');
+
 for i=1:length(allImages)
     im = evalin('base', string(allImages(i)));
     figure;
     subplot(1,2,1);
     imshow(im);
     subplot(1,2,2);
-    % A = getRGB(im)
-    % imshow(A)
+    %rgb analysis of image:  getRGB(im)
 end
 
 
