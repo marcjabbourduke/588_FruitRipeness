@@ -1,7 +1,7 @@
-%clc
-%clear all
-%close all
-%warning off
+clc
+clear all
+close all
+warning off
 a = true;
 while(a)
     
@@ -10,7 +10,7 @@ while(a)
     
      fruitType = questdlg('What fruit would you like to process?', ...
 	'Fruit Type', ...
-	'Banana','Strawberry','Strawberry');
+	'Banana','Orange','Strawberry','Strawberry');
      waitfor(fruitType);
 
     
