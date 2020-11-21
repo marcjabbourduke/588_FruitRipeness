@@ -4,6 +4,16 @@ close all
 warning off
 a = true;
 while(a)
+    
+    % ************************** ************************** 
+    % Add fruit options here
+    
+     fruitType = questdlg('What fruit would you like to process?', ...
+	'Fruit Type', ...
+	'Banana','Orange','Orange');
+     waitfor(fruitType);
+
+    
     [filename,user_canceled] = imgetfile;
     I = imread(filename);
     imageSegmenter(I);
@@ -34,8 +44,8 @@ for i=1:length(allImages)
     subplot(1,2,1);
     imshow(im);
     subplot(1,2,2);
-    %rgb analysis of image:  getRGB(im)
-    index = rgbAnalysis(allImages(i));
+    disp(fruitType);
+    index = rgbAnalysis(allImages(i), fruitType);
     text(0.5,0.5,string(index)); axis off
     disp(index);
 end
