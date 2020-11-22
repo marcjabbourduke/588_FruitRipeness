@@ -20,7 +20,15 @@ function ripenessIndex = rgbAnalysis(image, fruitType)
     y_blueLowerLimit = 0; 
     y_blueUpperLimit = 204; 
     y_greenLowerLimit = 153; 
-    y_greenUpperLimit = 255; 
+    y_greenUpperLimit = 255;
+    
+    %green
+    g_redLowerLimit = 0;
+    g_redUpperLimit = 153;
+    g_blueLowerLimit = 0;
+    g_blueUpperLimit = 70;
+    g_greenLowerLimit = 190;
+    g_greenUpperLimit = 266;
     
     %strawberry
     %red
@@ -31,7 +39,7 @@ function ripenessIndex = rgbAnalysis(image, fruitType)
     r_greenLowerLimit = 30; %30
     r_greenUpperLimit = 100; 
     
-    %whire
+    %white
     w_redLowerLimit = 200; 
     w_redUpperLimit = 255; 
     w_blueLowerLimit = 200; 
@@ -76,6 +84,17 @@ function ripenessIndex = rgbAnalysis(image, fruitType)
     % If statement so that we don't get errors for dividing by 0
     if(b_percentColor == 0)
         b_percentColor = 0.01;
+    end
+    %disp('B');
+    %disp(b_percentColor);
+    
+    % Percentage of green in the image
+    g_requiredColor  = ( I(:,:,1) >= g_redLowerLimit & I(:,:,1) <= g_redUpperLimit ) & ...
+        ( I(:,:,2) >= g_greenLowerLimit & I(:,:,2) <= g_greenUpperLimit ) & ( I(:,:,3) >= g_blueLowerLimit & I(:,:,3) <= g_blueUpperLimit ); 
+    g_percentColor =  100*(sum(sum(g_requiredColor))/(size(I,1)*size(I,2))); 
+    % If statement so that we don't get errors for dividing by 0
+    if(g_percentColor == 0)
+        g_percentColor = 0.01;
     end
     %disp('B');
     %disp(b_percentColor);
@@ -129,13 +148,13 @@ function ripenessIndex = rgbAnalysis(image, fruitType)
     % Add Cases for different fruits
     switch fruitType 
         case 'Banana'
-            ripenessIndex = b_percentColor * 100 / y_percentColor;
+            ripenessIndex = (b_percentColor * 100 / y_percentColor) - (g_percentColor * 100 / y_percentColor);
     
         case 'Strawberry'
             ripenessIndex = w_percentColor * 100 / r_percentColor;
         
         case 'Orange'
-            ripenessIndex = br_percentColor * 100 / o_percentColor;
+            ripenessIndex = br_percentColor * 100 / o_percentColor - (g_percentColor * 100 / o_percentColor);
     end
   
 

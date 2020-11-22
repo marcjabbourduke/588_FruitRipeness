@@ -20,7 +20,15 @@ function ripenessIndex = rgbAnalysis(image, fruitType)
     y_blueLowerLimit = 0; 
     y_blueUpperLimit = 204; 
     y_greenLowerLimit = 153; 
-    y_greenUpperLimit = 255; 
+    y_greenUpperLimit = 255;
+    
+    %green
+    g_redLowerLimit = 0;
+    g_redUpperLimit = 153;
+    g_blueLowerLimit = 0;
+    g_blueUpperLimit = 70;
+    g_greenLowerLimit = 190;
+    g_greenUpperLimit = 266;
     
     %strawberry
     %red
@@ -31,7 +39,7 @@ function ripenessIndex = rgbAnalysis(image, fruitType)
     r_greenLowerLimit = 30; %30
     r_greenUpperLimit = 100; 
     
-    %whire
+    %white
     w_redLowerLimit = 200; 
     w_redUpperLimit = 255; 
     w_blueLowerLimit = 200; 
