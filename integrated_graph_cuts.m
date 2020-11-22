@@ -3,10 +3,11 @@ clear all
 close all
 warning off
 a = true;
+benchmark = '';
 while(a)
     
     % ************************** ************************** 
-    % Add fruit options here
+    
      helpInfo = ['Welcome to the fruit ripeness indicator. To use this application:' ...
          newline newline...
          '1. Select the type of fruit you wish to analyze.' ...
@@ -32,7 +33,7 @@ while(a)
          'What fruit would you like to process?'];
      fruitType = questdlg(helpInfo, ...
 	'Fruit Ripeness Indicator', ...
-	'Banana','Orange','Strawberry','Strawberry');
+	'Banana','Orange','Strawberry','Strawberry'); % Add fruit options here
      waitfor(fruitType);
 
     
