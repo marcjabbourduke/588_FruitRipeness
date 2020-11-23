@@ -63,27 +63,6 @@ allImages = who('-regexp', '^mask');
 
 for i=1:length(allImages)
     
-    switch fruitType
-        case 'Banana'
-              benchmark = "Value Guidelines" + newline ...
-                          + newline + "Underripe: index < -5"...
-                          + newline + "Barely ripe: -5 < index < 5"...
-                          + newline + "Ripe: 5 < index < 100"...
-                          + newline + "Overripe: index > 100";
-        case 'Orange'
-              benchmark = "Value Guidelines" + newline ...
-                          + newline + "Underripe: index < -50"...
-                          + newline + "Barely ripe: -50 < index < -10"...
-                          + newline + "Ripe: -10 < index < 12"...
-                          + newline + "Bad: index > 12";
-        case 'Strawberry'
-              benchmark = "Value Guidelines" + newline ...
-                          + newline + "Fresh: index < 2.0" ...
-                          + newline + "Check for mold: 2.0 < index < 6.0" ...
-                          + newline + "Mold: index > 6.0";
-            
-    end
-    
     im = evalin('base', string(allImages(i)));
     figure;
     subplot(1,2,1);
@@ -91,20 +70,23 @@ for i=1:length(allImages)
     subplot(1,2,2);
     disp(fruitType);
     index = rgbAnalysis(allImages(i), fruitType);
-    s = text(0.1,0.7,"Ripeness Index:  " + string(index)); axis off
+    [message, benchmark, hexcode] = interpretIndex(fruitType, index);
+    s = text(0.1,0.8,"Ripeness Index:  " + string(index)); axis off
     s.FontSize = 12;
     s.FontWeight = 'bold';
     disp(index);
-    t = text(0.1,.4,3,string(benchmark)); axis off
+    t = text(0.1,0.1,3,string(benchmark)); axis off
     t.FontSize = 12;
     t.FontAngle = 'italic';
+    u = text(0.1,.5,3,message); axis off
+    u.FontSize = 14;
+    u.FontWeight = 'bold';
+    disp(hexcode);
+    u.BackgroundColor = hexcode;
+    u.LineStyle = '--';
+    u.Margin = 20;
     disp(benchmark);
-    
-   
-    
-    
-    
-     
+        
 end
 
 
